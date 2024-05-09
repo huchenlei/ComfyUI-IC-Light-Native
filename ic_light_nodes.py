@@ -98,13 +98,11 @@ def create_custom_conv(
             original_conv.kernel_size,
             original_conv.stride,
             original_conv.padding,
-            dtype=dtype,
-            device=device,
         )
         new_conv_in.weight.zero_()
         new_conv_in.weight[:, :4, :, :].copy_(original_conv.weight)
         new_conv_in.bias = original_conv.bias
-        return new_conv_in
+        return new_conv_in.to(dtype=dtype, device=device)
 
 
 class ICLight:
