@@ -86,12 +86,6 @@ class UnetParams(TypedDict):
     cond_or_uncond: torch.Tensor
 
 
-class WeightPatch(NamedTuple):
-    alpha: float
-    weight_value: torch.Tensor
-    strength_model: float
-
-
 def create_custom_conv(
     original_conv: torch.nn.Module,
     dtype: torch.dtype,
@@ -143,7 +137,9 @@ class ICLight:
         base_model: BaseModel = work_model.model
         unet: UNetModel = base_model.diffusion_model
         c_concat_samples: torch.Tensor = c_concat["samples"]
-        self.new_conv_in = None  # Clear previous run.
+
+        conv = unet.input_blocks[0][0]
+        self.new_conv_in = create_custom_conv(conv, dtype=dtype, device=device)
 
         def wrapped_unet(unet_apply: Callable, params: UnetParams):
             # Apply concat.
@@ -157,16 +153,13 @@ class ICLight:
                 dim=0,
             )
 
-            conv = unet.input_blocks[0][0]
-            if self.new_conv_in is None:
-                self.new_conv_in = create_custom_conv(conv, dtype=dtype, device=device)
-
             unet.input_blocks[0][0] = self.new_conv_in
 
             try:
                 return unet_apply(x=sample, t=params["timestep"], **params["c"])
             finally:
                 # Restore in case the original model is used somewhere else.
+                # TODO make patch replace of conv_in standard in ComfyUI.
                 unet.input_blocks[0][0] = conv
 
         work_model.set_model_unet_function_wrapper(wrapped_unet)
@@ -175,10 +168,8 @@ class ICLight:
 
         work_model.add_patches(
             patches={
-                key: WeightPatch(
-                    alpha=1.0,
-                    weight_value=(sd_offset[key].to(dtype=dtype, device=device),),
-                    strength_model=1.0,
+                ("diffusion_model." + key): (
+                    sd_offset[key].to(dtype=dtype, device=device),
                 )
                 for key in sd_offset.keys()
             }
