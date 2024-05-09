@@ -139,7 +139,8 @@ class ICLight:
         """ """
         device = comfy.model_management.get_torch_device()
         dtype = comfy.model_management.unet_dtype()
-        base_model: BaseModel = model.model
+        work_model = model.clone()
+        base_model: BaseModel = work_model.model
         unet: UNetModel = base_model.diffusion_model
         c_concat_samples: torch.Tensor = c_concat["samples"]
         self.new_conv_in = None  # Clear previous run.
@@ -168,11 +169,11 @@ class ICLight:
                 # Restore in case the original model is used somewhere else.
                 unet.input_blocks[0][0] = conv
 
-        model.set_model_unet_function_wrapper(wrapped_unet)
+        work_model.set_model_unet_function_wrapper(wrapped_unet)
         model_path = os.path.join(ic_light_root, "iclight_sd15_fc.safetensors")
         sd_offset = convert_unet_state_dict(safetensors.torch.load_file(model_path))
 
-        model.add_patches(
+        work_model.add_patches(
             patches={
                 key: WeightPatch(
                     alpha=1.0,
@@ -182,7 +183,7 @@ class ICLight:
                 for key in sd_offset.keys()
             }
         )
-        return (model,)
+        return (work_model,)
 
 
 NODE_CLASS_MAPPINGS = {
