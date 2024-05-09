@@ -2,6 +2,16 @@
 ComfyUI native implementation of [IC-Light](https://github.com/lllyasviel/IC-Light).
 
 ## Install
+Download the repository and unpack into the custom_nodes folder in the ComfyUI installation directory.
+
+Or clone via GIT, starting from ComfyUI installation directory:
+```bash
+cd custom_nodes
+git clone git@github.com:huchenlei/ComfyUI-IC-Light.git
+```
+
+Run `pip install -r requirements.txt` to install python dependencies.
+
 ### Download models
 IC-Light main repo is based on diffusers. In order to load it with UnetLoader in ComfyUI, state_dict keys need to convert to ldm format. You can download models with ldm keys here: https://huggingface.co/huchenlei/IC-Light-ldm/tree/main
 There are 2 models:
