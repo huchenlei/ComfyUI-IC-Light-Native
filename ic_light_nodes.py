@@ -9,9 +9,6 @@ from comfy.diffusers_convert import convert_unet_state_dict
 from comfy.model_patcher import ModelPatcher
 
 
-# from comfy.ops import disable_weight_init as ops
-
-
 if "ic_light" in folder_paths.folder_names_and_paths:
     ic_light_root = folder_paths.get_folder_paths("ic_light")[0]
 else:
