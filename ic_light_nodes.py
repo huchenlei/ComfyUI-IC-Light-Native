@@ -132,12 +132,7 @@ class ICLight:
         device = comfy.model_management.get_torch_device()
         dtype = comfy.model_management.unet_dtype()
         work_model = model.clone()
-        base_model: BaseModel = work_model.model
-        unet: UNetModel = base_model.diffusion_model
         c_concat_samples: torch.Tensor = c_concat["samples"]
-
-        conv = unet.input_blocks[0][0]
-        self.new_conv_in = create_custom_conv(conv, dtype=dtype, device=device)
 
         def wrapped_unet(unet_apply: Callable, params: UnetParams):
             # Apply concat.
@@ -150,16 +145,16 @@ class ICLight:
                 + params["c"].get("c_concat", []),
                 dim=0,
             )
+            return unet_apply(x=sample, t=params["timestep"], **params["c"])
 
-            unet.input_blocks[0][0] = self.new_conv_in
-
-            try:
-                return unet_apply(x=sample, t=params["timestep"], **params["c"])
-            finally:
-                # Restore in case the original model is used somewhere else.
-                # TODO make patch replace of conv_in standard in ComfyUI.
-                unet.input_blocks[0][0] = conv
-
+        work_model.add_object_patch(
+            "diffusion_model.input_blocks.0.0",
+            create_custom_conv(
+                work_model.get_model_object("diffusion_model.input_blocks.0.0"),
+                dtype=dtype,
+                device=device,
+            ),
+        )
         work_model.set_model_unet_function_wrapper(wrapped_unet)
         model_path = os.path.join(ic_light_root, "iclight_sd15_fc.safetensors")
         sd_offset = convert_unet_state_dict(safetensors.torch.load_file(model_path))
