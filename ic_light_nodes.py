@@ -65,15 +65,18 @@ class ICLight:
         # Apply scale factor.
         base_model: BaseModel = work_model.model
         scale_factor = base_model.model_config.latent_format.scale_factor
-        c_concat_samples: torch.Tensor = c_concat["samples"] * scale_factor
+        # [B, 4, H, W]
+        concat_conds: torch.Tensor = c_concat["samples"] * scale_factor
+        # [1, 4 * B, H, W]
+        concat_conds = torch.cat([c[None, ...] for c in concat_conds], dim=1)
 
         def wrapped_unet(unet_apply: Callable, params: UnetParams):
             # Apply concat.
             sample = params["input"]
             params["c"]["c_concat"] = torch.cat(
                 (
-                    [c_concat_samples.to(sample.device)]
-                    * (sample.shape[0] // c_concat_samples.shape[0])
+                    [concat_conds.to(sample.device)]
+                    * (sample.shape[0] // concat_conds.shape[0])
                 ),
                 dim=0,
             )
