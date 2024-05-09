@@ -18,18 +18,14 @@ After you download these models, please put them under `ComfyUI/models/unet` and
 - [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials): Many useful tooling nodes. Image resize node used in the workflow comes from this pack.
 
 ## Workflows
-### Given FG, Generate BG and relight
+### [Given FG, Generate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/b3dd0332-685f-41d6-aa4e-3ebfce480df7)
 
-### Given FG and light map, Genereate BG and relight
+### [Given FG and light map, Genereate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_lightmap.json)
 Light from right
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/4677eda3-5f2a-4948-8051-2fb7fc94f734)
 Light from left
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/ad24d316-1237-4fb6-8e23-aeef88a24bf7)
 
-### Given FG and BG, Put FG on BG and relight
+### [Given FG and BG, Put FG on BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_bg_combine.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/30c5c210-2636-4f8f-9719-738fa0e377ca)
-
-## TODO
-- [ ] How to use/install guide
-- [ ] Model download links
