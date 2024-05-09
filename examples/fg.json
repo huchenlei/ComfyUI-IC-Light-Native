@@ -1,6 +1,6 @@
 {
-  "last_node_id": 34,
-  "last_link_id": 61,
+  "last_node_id": 35,
+  "last_link_id": 66,
   "nodes": [
     {
       "id": 5,
@@ -71,7 +71,7 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 56
+          "link": 66
         },
         {
           "name": "positive",
@@ -103,7 +103,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        99655558349011,
+        460108284036805,
         "randomize",
         25,
         2,
@@ -218,56 +218,6 @@
         "i3.png",
         "image"
       ]
-    },
-    {
-      "id": 34,
-      "type": "ICLightAppply",
-      "pos": [
-        593,
-        -347
-      ],
-      "size": {
-        "0": 210,
-        "1": 66
-      },
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 54,
-          "slot_index": 0
-        },
-        {
-          "name": "ic_model",
-          "type": "MODEL",
-          "link": 55,
-          "slot_index": 1
-        },
-        {
-          "name": "c_concat",
-          "type": "LATENT",
-          "link": 52
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            56
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ICLightAppply"
-      },
-      "color": "#232",
-      "bgcolor": "#353"
     },
     {
       "id": 14,
@@ -411,7 +361,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            52
+            65
           ],
           "shape": 3,
           "slot_index": 0
@@ -442,7 +392,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            54
+            63
           ],
           "slot_index": 0
         },
@@ -470,38 +420,6 @@
       },
       "widgets_values": [
         "realisticVisionV20_v20.safetensors"
-      ]
-    },
-    {
-      "id": 23,
-      "type": "UNETLoader",
-      "pos": [
-        196,
-        -327
-      ],
-      "size": {
-        "0": 315,
-        "1": 58
-      },
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            55
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "UNETLoader"
-      },
-      "widgets_values": [
-        "iclight_sd15_fc_unet_ldm.safetensors"
       ]
     },
     {
@@ -579,6 +497,88 @@
       "widgets_values": [
         "lowres, bad anatomy, bad hands, cropped, worst quality"
       ]
+    },
+    {
+      "id": 23,
+      "type": "UNETLoader",
+      "pos": [
+        196,
+        -327
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            64
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "iclight_sd15_fc_unet_ldm.safetensors"
+      ]
+    },
+    {
+      "id": 35,
+      "type": "ICLightAppply",
+      "pos": [
+        613,
+        -367
+      ],
+      "size": {
+        "0": 210,
+        "1": 66
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 63,
+          "slot_index": 0
+        },
+        {
+          "name": "ic_model",
+          "type": "MODEL",
+          "link": 64
+        },
+        {
+          "name": "c_concat",
+          "type": "LATENT",
+          "link": 65,
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            66
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ICLightAppply"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -687,44 +687,44 @@
       "VAE"
     ],
     [
-      52,
-      24,
-      0,
-      34,
-      2,
-      "LATENT"
-    ],
-    [
-      54,
-      4,
-      0,
-      34,
-      0,
-      "MODEL"
-    ],
-    [
-      55,
-      23,
-      0,
-      34,
-      1,
-      "MODEL"
-    ],
-    [
-      56,
-      34,
-      0,
-      16,
-      0,
-      "MODEL"
-    ],
-    [
       61,
       12,
       0,
       24,
       0,
       "IMAGE"
+    ],
+    [
+      63,
+      4,
+      0,
+      35,
+      0,
+      "MODEL"
+    ],
+    [
+      64,
+      23,
+      0,
+      35,
+      1,
+      "MODEL"
+    ],
+    [
+      65,
+      24,
+      0,
+      35,
+      2,
+      "LATENT"
+    ],
+    [
+      66,
+      35,
+      0,
+      16,
+      0,
+      "MODEL"
     ]
   ],
   "groups": [],
@@ -736,7 +736,7 @@
       "description": "",
       "version": "1",
       "created": "2024-05-07T01:48:43.503Z",
-      "modified": "2024-05-09T20:36:16.838Z",
+      "modified": "2024-05-09T21:20:29.660Z",
       "software": "ComfyUI"
     }
   },

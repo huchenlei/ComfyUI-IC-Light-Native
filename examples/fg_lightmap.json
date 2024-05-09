@@ -1,6 +1,6 @@
 {
-  "last_node_id": 38,
-  "last_link_id": 70,
+  "last_node_id": 40,
+  "last_link_id": 75,
   "nodes": [
     {
       "id": 16,
@@ -20,7 +20,7 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 56
+          "link": 72
         },
         {
           "name": "positive",
@@ -52,7 +52,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        622784622689363,
+        101183310875036,
         "randomize",
         25,
         2,
@@ -169,106 +169,6 @@
       ]
     },
     {
-      "id": 34,
-      "type": "ICLightAppply",
-      "pos": [
-        593,
-        -347
-      ],
-      "size": {
-        "0": 210,
-        "1": 86
-      },
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 54,
-          "slot_index": 0
-        },
-        {
-          "name": "ic_model",
-          "type": "MODEL",
-          "link": 55,
-          "slot_index": 1
-        },
-        {
-          "name": "c_concat",
-          "type": "LATENT",
-          "link": 52
-        },
-        {
-          "name": "bg",
-          "type": "LATENT",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            56
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ICLightAppply"
-      },
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 24,
-      "type": "VAEEncodeArgMax",
-      "pos": [
-        422,
-        -516
-      ],
-      "size": {
-        "0": 210,
-        "1": 46
-      },
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "pixels",
-          "type": "IMAGE",
-          "link": 61,
-          "slot_index": 0
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 35,
-          "slot_index": 1
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            52
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAEEncodeArgMax"
-      },
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
       "id": 23,
       "type": "UNETLoader",
       "pos": [
@@ -287,7 +187,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            55
+            74
           ],
           "shape": 3,
           "slot_index": 0
@@ -582,7 +482,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            54
+            75
           ],
           "slot_index": 0
         },
@@ -612,6 +512,101 @@
       "widgets_values": [
         "realisticVisionV20_v20.safetensors"
       ]
+    },
+    {
+      "id": 24,
+      "type": "VAEEncodeArgMax",
+      "pos": [
+        422,
+        -516
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 61,
+          "slot_index": 0
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 35,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            73
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncodeArgMax"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 40,
+      "type": "ICLightAppply",
+      "pos": [
+        642,
+        -348
+      ],
+      "size": {
+        "0": 210,
+        "1": 66
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 75,
+          "slot_index": 0
+        },
+        {
+          "name": "ic_model",
+          "type": "MODEL",
+          "link": 74,
+          "slot_index": 1
+        },
+        {
+          "name": "c_concat",
+          "type": "LATENT",
+          "link": 73
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            72
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ICLightAppply"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
     },
     {
       "id": 38,
@@ -685,7 +680,7 @@
         "Node name for S&R": "CreateGradientMask"
       },
       "widgets_values": [
-        false,
+        true,
         1,
         256,
         256
@@ -774,38 +769,6 @@
       "VAE"
     ],
     [
-      52,
-      24,
-      0,
-      34,
-      2,
-      "LATENT"
-    ],
-    [
-      54,
-      4,
-      0,
-      34,
-      0,
-      "MODEL"
-    ],
-    [
-      55,
-      23,
-      0,
-      34,
-      1,
-      "MODEL"
-    ],
-    [
-      56,
-      34,
-      0,
-      16,
-      0,
-      "MODEL"
-    ],
-    [
       61,
       12,
       0,
@@ -868,6 +831,38 @@
       37,
       1,
       "VAE"
+    ],
+    [
+      72,
+      40,
+      0,
+      16,
+      0,
+      "MODEL"
+    ],
+    [
+      73,
+      24,
+      0,
+      40,
+      2,
+      "LATENT"
+    ],
+    [
+      74,
+      23,
+      0,
+      40,
+      1,
+      "MODEL"
+    ],
+    [
+      75,
+      4,
+      0,
+      40,
+      0,
+      "MODEL"
     ]
   ],
   "groups": [],
@@ -879,7 +874,7 @@
       "description": "",
       "version": "1",
       "created": "2024-05-07T01:48:43.503Z",
-      "modified": "2024-05-09T21:02:40.540Z",
+      "modified": "2024-05-09T21:18:27.228Z",
       "software": "ComfyUI"
     }
   },
