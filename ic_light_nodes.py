@@ -1,15 +1,12 @@
 import os
 import torch
 import safetensors.torch
-from typing import Tuple, TypedDict, Callable, NamedTuple
+from typing import Tuple, TypedDict, Callable
 
 import folder_paths
 import comfy.model_management
 from comfy.diffusers_convert import convert_unet_state_dict
 from comfy.model_patcher import ModelPatcher
-from comfy.ldm.modules.diffusionmodules.openaimodel import UNetModel
-from comfy.model_base import BaseModel
-from comfy.conds import CONDRegular
 
 
 # from comfy.ops import disable_weight_init as ops
