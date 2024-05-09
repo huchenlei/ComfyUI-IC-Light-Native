@@ -6,3 +6,5 @@ ComfyUI native implementation of [IC-Light](https://github.com/lllyasviel/IC-Lig
 ## TODO
 - [ ] BG support
 - [ ] Example workflow
+- [ ] How to use/install guide
+- [ ] Model download links
