@@ -1,21 +1,12 @@
-import os
 import torch
 from typing import Tuple, TypedDict, Callable
 
-import folder_paths
 import comfy.model_management
-from comfy.diffusers_convert import convert_unet_state_dict
 from comfy.model_patcher import ModelPatcher
 from comfy.sd import VAE
 from comfy.ldm.models.autoencoder import AutoencoderKL
-from comfy.latent_formats import SD15 as SD15Config
+from comfy.model_base import BaseModel
 from nodes import VAEEncode
-
-
-if "ic_light" in folder_paths.folder_names_and_paths:
-    ic_light_root = folder_paths.get_folder_paths("ic_light")[0]
-else:
-    ic_light_root = os.path.join(folder_paths.models_dir, "ic_light")
 
 
 class UnetParams(TypedDict):
@@ -48,6 +39,7 @@ class ICLight:
         return {
             "required": {
                 "model": ("MODEL",),
+                "ic_model": ("MODEL",),
                 "c_concat": ("LATENT",),
             },
         }
@@ -62,6 +54,7 @@ class ICLight:
     def apply(
         self,
         model: ModelPatcher,
+        ic_model: ModelPatcher,
         c_concat: dict,
     ) -> Tuple[ModelPatcher]:
         """ """
@@ -70,7 +63,8 @@ class ICLight:
         work_model = model.clone()
 
         # Apply scale factor.
-        scale_factor = SD15Config().scale_factor
+        base_model: BaseModel = work_model.model
+        scale_factor = base_model.model_config.latent_format.scale_factor
         c_concat_samples: torch.Tensor = c_concat["samples"] * scale_factor
 
         def wrapped_unet(unet_apply: Callable, params: UnetParams):
@@ -86,23 +80,14 @@ class ICLight:
             return unet_apply(x=sample, t=params["timestep"], **params["c"])
 
         work_model.set_model_unet_function_wrapper(wrapped_unet)
-        # model_path = os.path.join(ic_light_root, "iclight_sd15_fc.safetensors")
-        # model_path = os.path.join(ic_light_root, "merged_ic_light.safetensors")
-        # sd_dict = convert_unet_state_dict(safetensors.torch.load_file(model_path))
-        # sd_dict = {
-        #     ("model.diffusion_model." + key): sd_dict[key]
-        #     for key in sd_dict.keys()
-        # }
-        # safetensors.torch.save_file(sd_dict, "merged_ic_light.safetensors")
 
-        # work_model.add_patches(
-        #     patches={
-        #         ("diffusion_model." + key): (
-        #             sd_offset[key].to(dtype=dtype, device=device),
-        #         )
-        #         for key in sd_offset.keys()
-        #     }
-        # )
+        ic_model_state_dict = ic_model.model.diffusion_model.state_dict()
+        work_model.add_patches(
+            patches={
+                ("diffusion_model." + key): (value.to(dtype=dtype, device=device),)
+                for key, value in ic_model_state_dict.items()
+            }
+        )
         return (work_model,)
 
 
