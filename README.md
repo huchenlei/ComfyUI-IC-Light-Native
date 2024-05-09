@@ -12,9 +12,11 @@ git clone git@github.com:huchenlei/ComfyUI-IC-Light.git
 
 ### Download models
 IC-Light main repo is based on diffusers. In order to load it with UnetLoader in ComfyUI, state_dict keys need to convert to ldm format. You can download models with ldm keys here: https://huggingface.co/huchenlei/IC-Light-ldm/tree/main
+
 There are 2 models:
 - iclight_sd15_fc_unet_ldm: Use this in FG workflows
 - iclight_sd15_fbc_unet_ldm: Use this in BG workflows
+
 After you download these models, please put them under `ComfyUI/models/unet` and load them with `UNETLoader` node.
 
 ### Required nodes
