@@ -15,7 +15,7 @@ IC-Light main repo is based on diffusers. In order to load it with UnetLoader in
 
 There are 2 models:
 - iclight_sd15_fc_unet_ldm: Use this in FG workflows
-- iclight_sd15_fbc_unet_ldm: Use this in BG workflows
+- iclight_sd15_fbc_unet_ldm: Use this in BG workflows [Uploading...]
 
 After you download these models, please put them under `ComfyUI/models/unet` and load them with `UNETLoader` node.
 
