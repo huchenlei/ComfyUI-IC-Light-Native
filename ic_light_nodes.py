@@ -21,88 +21,11 @@ else:
     ic_light_root = os.path.join(folder_paths.models_dir, "ic_light")
 
 
-# @torch.inference_mode()
-# def encode_prompt_inner(txt: str):
-#     max_length = tokenizer.model_max_length
-#     chunk_length = tokenizer.model_max_length - 2
-#     id_start = tokenizer.bos_token_id
-#     id_end = tokenizer.eos_token_id
-#     id_pad = id_end
-
-#     def pad(x, p, i):
-#         return x[:i] if len(x) >= i else x + [p] * (i - len(x))
-
-#     tokens = tokenizer(txt, truncation=False, add_special_tokens=False)["input_ids"]
-#     chunks = [[id_start] + tokens[i: i + chunk_length] + [id_end] for i in range(0, len(tokens), chunk_length)]
-#     chunks = [pad(ck, id_pad, max_length) for ck in chunks]
-
-#     token_ids = torch.tensor(chunks).to(device=device, dtype=torch.int64)
-#     conds = text_encoder(token_ids).last_hidden_state
-
-#     return conds
-
-
-# @torch.inference_mode()
-# def encode_prompt_pair(positive_prompt, negative_prompt):
-#     c = encode_prompt_inner(positive_prompt)
-#     uc = encode_prompt_inner(negative_prompt)
-
-#     c_len = float(len(c))
-#     uc_len = float(len(uc))
-#     max_count = max(c_len, uc_len)
-#     c_repeat = int(math.ceil(max_count / c_len))
-#     uc_repeat = int(math.ceil(max_count / uc_len))
-#     max_chunk = max(len(c), len(uc))
-
-#     c = torch.cat([c] * c_repeat, dim=0)[:max_chunk]
-#     uc = torch.cat([uc] * uc_repeat, dim=0)[:max_chunk]
-
-#     c = torch.cat([p[None, ...] for p in c], dim=1)
-#     uc = torch.cat([p[None, ...] for p in uc], dim=1)
-
-#     return c, uc
-
-
-def apply_c_concat(cond, uncond, c_concat: torch.Tensor):
-    """Set foreground/background concat condition."""
-
-    def write_c_concat(cond):
-        new_cond = []
-        for t in cond:
-            n = [t[0], t[1].copy()]
-            if "model_conds" not in n[1]:
-                n[1]["model_conds"] = {}
-            n[1]["model_conds"]["c_concat"] = CONDRegular(c_concat)
-            new_cond.append(n)
-        return new_cond
-
-    return (write_c_concat(cond), write_c_concat(uncond))
-
-
 class UnetParams(TypedDict):
     input: torch.Tensor
     timestep: torch.Tensor
     c: dict
     cond_or_uncond: torch.Tensor
-
-
-def create_custom_conv(
-    original_conv: torch.nn.Module,
-    dtype: torch.dtype,
-    device=torch.device,
-) -> torch.nn.Module:
-    with torch.no_grad():
-        new_conv_in = torch.nn.Conv2d(
-            8,
-            original_conv.out_channels,
-            original_conv.kernel_size,
-            original_conv.stride,
-            original_conv.padding,
-        )
-        new_conv_in.weight.zero_()
-        new_conv_in.weight[:, :4, :, :].copy_(original_conv.weight)
-        new_conv_in.bias = original_conv.bias
-        return new_conv_in.to(dtype=dtype, device=device)
 
 
 class ICLight:
@@ -141,20 +64,11 @@ class ICLight:
                 (
                     [c_concat_samples.to(sample.device)]
                     * (sample.shape[0] // c_concat_samples.shape[0])
-                )
-                + params["c"].get("c_concat", []),
+                ),
                 dim=0,
             )
             return unet_apply(x=sample, t=params["timestep"], **params["c"])
 
-        work_model.add_object_patch(
-            "diffusion_model.input_blocks.0.0",
-            create_custom_conv(
-                work_model.get_model_object("diffusion_model.input_blocks.0.0"),
-                dtype=dtype,
-                device=device,
-            ),
-        )
         work_model.set_model_unet_function_wrapper(wrapped_unet)
         model_path = os.path.join(ic_light_root, "iclight_sd15_fc.safetensors")
         sd_offset = convert_unet_state_dict(safetensors.torch.load_file(model_path))
