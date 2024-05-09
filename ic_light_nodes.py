@@ -57,7 +57,6 @@ class ICLight:
         ic_model: ModelPatcher,
         c_concat: dict,
     ) -> Tuple[ModelPatcher]:
-        """ """
         device = comfy.model_management.get_torch_device()
         dtype = comfy.model_management.unet_dtype()
         work_model = model.clone()
