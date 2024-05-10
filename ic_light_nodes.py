@@ -69,8 +69,8 @@ class ICLight:
         # [1, 4 * B, H, W]
         concat_conds = torch.cat([c[None, ...] for c in concat_conds], dim=1)
 
-        def wrapped_unet(unet_apply: Callable, params: UnetParams):
-            # Apply concat.
+        def apply_c_concat(params: UnetParams) -> UnetParams:
+            """Apply c_concat on unet call."""
             sample = params["input"]
             params["c"]["c_concat"] = torch.cat(
                 (
@@ -79,9 +79,29 @@ class ICLight:
                 ),
                 dim=0,
             )
-            return unet_apply(x=sample, t=params["timestep"], **params["c"])
+            return params
 
-        work_model.set_model_unet_function_wrapper(wrapped_unet)
+        def unet_dummy_apply(unet_apply: Callable, params: UnetParams):
+            """A dummy unet apply wrapper serving as the endpoint of wrapper
+            chain."""
+            return unet_apply(x=params["input"], t=params["timestep"], **params["c"])
+
+        # Compose on existing `model_function_wrapper`.
+        existing_wrapper = work_model.model_options.get("model_function_wrapper")
+        if existing_wrapper is None:
+
+            def wrapper_func(unet_apply: Callable, params: UnetParams):
+                return unet_dummy_apply(unet_apply, params=apply_c_concat(params))
+
+        else:
+
+            def wrapper_func(unet_apply: Callable, params: UnetParams):
+                print(
+                    f"IC-Light: Composing on existing unet wrapper {existing_wrapper}"
+                )
+                return existing_wrapper(unet_apply, params=apply_c_concat(params))
+
+        work_model.set_model_unet_function_wrapper(wrapper_func)
 
         ic_model_state_dict = ic_model.model.diffusion_model.state_dict()
         work_model.add_patches(
