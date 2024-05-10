@@ -87,19 +87,12 @@ class ICLight:
             return unet_apply(x=params["input"], t=params["timestep"], **params["c"])
 
         # Compose on existing `model_function_wrapper`.
-        existing_wrapper = work_model.model_options.get("model_function_wrapper")
-        if existing_wrapper is None:
+        existing_wrapper = work_model.model_options.get(
+            "model_function_wrapper", unet_dummy_apply
+        )
 
-            def wrapper_func(unet_apply: Callable, params: UnetParams):
-                return unet_dummy_apply(unet_apply, params=apply_c_concat(params))
-
-        else:
-
-            def wrapper_func(unet_apply: Callable, params: UnetParams):
-                print(
-                    f"IC-Light: Composing on existing unet wrapper {existing_wrapper}"
-                )
-                return existing_wrapper(unet_apply, params=apply_c_concat(params))
+        def wrapper_func(unet_apply: Callable, params: UnetParams):
+            return existing_wrapper(unet_apply, params=apply_c_concat(params))
 
         work_model.set_model_unet_function_wrapper(wrapper_func)
 
