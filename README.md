@@ -19,7 +19,8 @@ There are 2 models:
 
 After you download these models, please put them under `ComfyUI/models/unet` and load them with `UNETLoader` node.
 
-### Required nodes
+### [Important!] Required nodes
+You MUST install following nodes first for IC light to work properly.
 - [ComfyUI-layerdiffuse](https://github.com/huchenlei/ComfyUI-layerdiffuse): Although not used in the workflow, the patching of weight load in layerdiffuse is a dependency for IC-Light nodes to work properly.
   
 ### Recommended nodes
@@ -39,3 +40,22 @@ Light from left
 
 ### [Given FG and BG, Put FG on BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_bg_combine.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/30c5c210-2636-4f8f-9719-738fa0e377ca)
+
+## Common Issues
+IC-Light's unet is accepting extra inputs on top of the common noise input. FG model accepts extra 1 input (4 channels). BG model accepts 2 extra input (8 channels).
+The original unet's input is 4 channels as well. 
+
+If you see following issue, it means IC-Light's unet is not properly loaded, and you need to install [ComfyUI-layerdiffuse](https://github.com/huchenlei/ComfyUI-layerdiffuse) first.
+```
+RuntimeError: Given groups=1, weight of size [320, 4, 3, 3], expected input[2, 8, 64, 64] to have 4 channels, but got 8 channels instead
+```
+
+If you see following error, it means you are using FG workflow but loaded the BG model.
+```
+RuntimeError: Given groups=1, weight of size [320, 8, 3, 3], expected input[2, 12, 64, 64] to have 8 channels, but got 12 channels instead
+```
+
+If you see following error, it means you are using FG workflow but loaded the BG model.
+```
+RuntimeError: Given groups=1, weight of size [320, 12, 3, 3], expected input[2, 8, 64, 64] to have 12 channels, but got 8 channels instead
+```
