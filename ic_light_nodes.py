@@ -48,9 +48,6 @@ class ICLight:
     FUNCTION = "apply"
     CATEGORY = "_for_testing"
 
-    def __init__(self) -> None:
-        self.new_conv_in = None
-
     def apply(
         self,
         model: ModelPatcher,
