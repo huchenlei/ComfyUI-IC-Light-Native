@@ -1,4 +1,4 @@
-# ComfyUI-IC-Light
+# ComfyUI-IC-Light-Native
 ComfyUI native implementation of [IC-Light](https://github.com/lllyasviel/IC-Light).
 
 ## Install
