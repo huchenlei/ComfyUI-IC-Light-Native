@@ -1,6 +1,6 @@
 {
-  "last_node_id": 40,
-  "last_link_id": 75,
+  "last_node_id": 41,
+  "last_link_id": 78,
   "nodes": [
     {
       "id": 16,
@@ -14,7 +14,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -52,7 +52,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        101183310875036,
+        1026243538009141,
         "randomize",
         25,
         2,
@@ -73,7 +73,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 14,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -113,7 +113,7 @@
         "1": 581.6578369140625
       },
       "flags": {},
-      "order": 15,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -274,53 +274,6 @@
       },
       "widgets_values": [
         "lowres, bad anatomy, bad hands, cropped, worst quality"
-      ]
-    },
-    {
-      "id": 12,
-      "type": "easy imageRemBg",
-      "pos": [
-        -140,
-        -520
-      ],
-      "size": [
-        315,
-        338
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 18
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            61
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "mask",
-          "type": "MASK",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "easy imageRemBg"
-      },
-      "widgets_values": [
-        "RMBG-1.4",
-        "Preview",
-        "ComfyUI"
       ]
     },
     {
@@ -525,13 +478,13 @@
         "1": 46
       },
       "flags": {},
-      "order": 8,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
           "name": "pixels",
           "type": "IMAGE",
-          "link": 61,
+          "link": 78,
           "slot_index": 0
         },
         {
@@ -570,7 +523,7 @@
         "1": 66
       },
       "flags": {},
-      "order": 10,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -615,10 +568,10 @@
         545,
         436
       ],
-      "size": [
-        210,
-        246
-      ],
+      "size": {
+        "0": 210,
+        "1": 246
+      },
       "flags": {},
       "order": 12,
       "mode": 0,
@@ -634,16 +587,109 @@
       }
     },
     {
+      "id": 12,
+      "type": "easy imageRemBg",
+      "pos": [
+        -140,
+        -520
+      ],
+      "size": {
+        "0": 315,
+        "1": 338
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            76
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            77
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy imageRemBg"
+      },
+      "widgets_values": [
+        "RMBG-1.4",
+        "Preview",
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 41,
+      "type": "ICLightApplyMaskGrey",
+      "pos": [
+        198,
+        -520
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 76
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 77
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            78
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ICLightApplyMaskGrey"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
       "id": 35,
       "type": "CreateGradientMask",
       "pos": [
         -70,
         310
       ],
-      "size": [
-        315,
-        130
-      ],
+      "size": {
+        "0": 315,
+        "1": 130
+      },
       "flags": {},
       "order": 7,
       "mode": 0,
@@ -680,7 +726,7 @@
         "Node name for S&R": "CreateGradientMask"
       },
       "widgets_values": [
-        true,
+        false,
         1,
         256,
         256
@@ -769,14 +815,6 @@
       "VAE"
     ],
     [
-      61,
-      12,
-      0,
-      24,
-      0,
-      "IMAGE"
-    ],
-    [
       62,
       35,
       0,
@@ -863,6 +901,30 @@
       40,
       0,
       "MODEL"
+    ],
+    [
+      76,
+      12,
+      0,
+      41,
+      0,
+      "IMAGE"
+    ],
+    [
+      77,
+      12,
+      1,
+      41,
+      1,
+      "MASK"
+    ],
+    [
+      78,
+      41,
+      0,
+      24,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [],
@@ -874,7 +936,7 @@
       "description": "",
       "version": "1",
       "created": "2024-05-07T01:48:43.503Z",
-      "modified": "2024-05-09T21:18:27.228Z",
+      "modified": "2024-05-12T20:28:38.563Z",
       "software": "ComfyUI"
     }
   },

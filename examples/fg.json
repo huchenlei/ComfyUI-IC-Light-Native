@@ -1,6 +1,6 @@
 {
-  "last_node_id": 35,
-  "last_link_id": 66,
+  "last_node_id": 36,
+  "last_link_id": 69,
   "nodes": [
     {
       "id": 5,
@@ -65,7 +65,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -103,7 +103,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        460108284036805,
+        77073898426966,
         "randomize",
         25,
         2,
@@ -124,7 +124,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -164,7 +164,7 @@
         "1": 581.6578369140625
       },
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -307,7 +307,7 @@
           "name": "image",
           "type": "IMAGE",
           "links": [
-            61
+            67
           ],
           "shape": 3,
           "slot_index": 0
@@ -315,7 +315,9 @@
         {
           "name": "mask",
           "type": "MASK",
-          "links": null,
+          "links": [
+            68
+          ],
           "shape": 3
         }
       ],
@@ -340,13 +342,13 @@
         "1": 46
       },
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
           "name": "pixels",
           "type": "IMAGE",
-          "link": 61,
+          "link": 69,
           "slot_index": 0
         },
         {
@@ -542,7 +544,7 @@
         "1": 66
       },
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -576,6 +578,51 @@
       ],
       "properties": {
         "Node name for S&R": "ICLightAppply"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 36,
+      "type": "ICLightApplyMaskGrey",
+      "pos": [
+        199,
+        -519
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 67,
+          "slot_index": 0
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 68,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            69
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ICLightApplyMaskGrey"
       },
       "color": "#232",
       "bgcolor": "#353"
@@ -687,14 +734,6 @@
       "VAE"
     ],
     [
-      61,
-      12,
-      0,
-      24,
-      0,
-      "IMAGE"
-    ],
-    [
       63,
       4,
       0,
@@ -725,6 +764,30 @@
       16,
       0,
       "MODEL"
+    ],
+    [
+      67,
+      12,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      68,
+      12,
+      1,
+      36,
+      1,
+      "MASK"
+    ],
+    [
+      69,
+      36,
+      0,
+      24,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [],
@@ -736,7 +799,7 @@
       "description": "",
       "version": "1",
       "created": "2024-05-07T01:48:43.503Z",
-      "modified": "2024-05-09T21:20:29.660Z",
+      "modified": "2024-05-12T20:29:20.246Z",
       "software": "ComfyUI"
     }
   },

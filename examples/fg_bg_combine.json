@@ -1,6 +1,6 @@
 {
-  "last_node_id": 34,
-  "last_link_id": 60,
+  "last_node_id": 38,
+  "last_link_id": 67,
   "nodes": [
     {
       "id": 5,
@@ -152,7 +152,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 15,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -190,7 +190,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        14860931251581,
+        316417885469103,
         "randomize",
         25,
         2,
@@ -211,7 +211,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 16,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -251,7 +251,7 @@
         "1": 581.6578369140625
       },
       "flags": {},
-      "order": 17,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -271,8 +271,8 @@
       "id": 11,
       "type": "LoadImage",
       "pos": [
-        -1010,
-        -540
+        -1200,
+        -530
       ],
       "size": {
         "0": 315,
@@ -313,10 +313,10 @@
         -560,
         160
       ],
-      "size": [
-        315,
-        106
-      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
       "flags": {},
       "order": 10,
       "mode": 0,
@@ -359,53 +359,6 @@
       ]
     },
     {
-      "id": 12,
-      "type": "easy imageRemBg",
-      "pos": [
-        -250,
-        -540
-      ],
-      "size": {
-        "0": 315,
-        "1": 338
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 18
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            51
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "mask",
-          "type": "MASK",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "easy imageRemBg"
-      },
-      "widgets_values": [
-        "RMBG-1.4",
-        "Save",
-        "ComfyUI"
-      ]
-    },
-    {
       "id": 33,
       "type": "JoinImageWithAlpha",
       "pos": [
@@ -417,7 +370,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -497,7 +450,7 @@
         "1": 66
       },
       "flags": {},
-      "order": 14,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -612,10 +565,10 @@
         -560,
         -110
       ],
-      "size": [
-        315,
-        218
-      ],
+      "size": {
+        "0": 315,
+        "1": 218
+      },
       "flags": {},
       "order": 9,
       "mode": 0,
@@ -683,8 +636,8 @@
       "id": 14,
       "type": "ImageResize+",
       "pos": [
-        -610,
-        -540
+        -800,
+        -530
       ],
       "size": {
         "0": 315,
@@ -757,7 +710,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -794,21 +747,21 @@
       "id": 26,
       "type": "ImageBatch",
       "pos": [
-        149,
-        -538
+        162,
+        -535
       ],
       "size": {
         "0": 210,
         "1": 46
       },
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
           "name": "image1",
           "type": "IMAGE",
-          "link": 51
+          "link": 63
         },
         {
           "name": "image2",
@@ -831,6 +784,100 @@
       "properties": {
         "Node name for S&R": "ImageBatch"
       }
+    },
+    {
+      "id": 12,
+      "type": "easy imageRemBg",
+      "pos": [
+        -440,
+        -530
+      ],
+      "size": {
+        "0": 315,
+        "1": 338
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            61
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            62
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy imageRemBg"
+      },
+      "widgets_values": [
+        "RMBG-1.4",
+        "Save",
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 35,
+      "type": "ICLightApplyMaskGrey",
+      "pos": [
+        -85,
+        -534
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 61,
+          "slot_index": 0
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 62,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            63
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ICLightApplyMaskGrey"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -979,14 +1026,6 @@
       "IMAGE"
     ],
     [
-      51,
-      12,
-      0,
-      26,
-      0,
-      "IMAGE"
-    ],
-    [
       52,
       24,
       0,
@@ -1049,6 +1088,30 @@
       32,
       1,
       "INT"
+    ],
+    [
+      61,
+      12,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      62,
+      12,
+      1,
+      35,
+      1,
+      "MASK"
+    ],
+    [
+      63,
+      35,
+      0,
+      26,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [],
@@ -1060,7 +1123,7 @@
       "description": "",
       "version": "1",
       "created": "2024-05-07T01:48:43.503Z",
-      "modified": "2024-05-09T20:28:42.023Z",
+      "modified": "2024-05-12T20:31:18.596Z",
       "software": "ComfyUI"
     }
   },
