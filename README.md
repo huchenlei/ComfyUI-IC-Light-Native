@@ -29,6 +29,11 @@ You MUST install following nodes first for IC light to work properly.
 - [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials): Many useful tooling nodes. Image resize node used in the workflow comes from this pack.
 
 ## Workflows
+Please make sure the fg image's masked/transparent area are grey before you pass it to the VAE. Otherwise, you will get background obscured in FC workflows or
+darkened background in FBC workflows. You can use `IC Light Apply Mask Grey` to make sure the masked area's color is correct. See following examples:
+![12 05 2024_16 22 48_REC](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/702c7b3a-54f7-44e2-a6d7-39220aa6ffef)
+![12 05 2024_16 19 02_REC](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/6d2d504f-65be-47cb-9597-2e64fe239939)
+
 ### [Given FG, Generate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/6b801a2d-f37c-44f4-b52d-ad7de1748f8e)
 
