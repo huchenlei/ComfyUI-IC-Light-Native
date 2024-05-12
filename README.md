@@ -30,16 +30,17 @@ You MUST install following nodes first for IC light to work properly.
 
 ## Workflows
 ### [Given FG, Generate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg.json)
-![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/cde6da71-c944-4982-9e2d-eab57c85c3cf)
+![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/6b801a2d-f37c-44f4-b52d-ad7de1748f8e)
 
 ### [Given FG and light map, Genereate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_lightmap.json)
 Light from right
-![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/6b290e52-59cc-4d0a-8d48-17750cba5cc6)
+![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/045e4f0e-6083-496f-af32-41de4821afbf)
+
 Light from left
-![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/6962c9b6-dc12-4876-8cd1-75428f6549f1)
+![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/74750b9e-bda7-43f7-944f-d75cb7b5fb7e)
 
 ### [Given FG and BG, Put FG on BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_bg_combine.json)
-![image](https://github.com/huchenlei/ComfyUI-IC-Light/assets/20929282/30c5c210-2636-4f8f-9719-738fa0e377ca)
+![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/ea87538a-15d8-43d8-874d-bcddab9f4f0e)
 
 ## Common Issues
 IC-Light's unet is accepting extra inputs on top of the common noise input. FG model accepts extra 1 input (4 channels). BG model accepts 2 extra input (8 channels).
