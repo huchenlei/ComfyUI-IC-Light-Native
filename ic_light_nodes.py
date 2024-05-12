@@ -31,6 +31,30 @@ class VAEEncodeArgMax(VAEEncode):
         return ret
 
 
+class ICLightApplyMaskGrey:
+    """Make masked area grey(127) in the image."""
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "image": ("IMAGE",),
+                "alpha": ("MASK",),
+            }
+        }
+
+    CATEGORY = "mask/compositing"
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "apply_mask"
+
+    def apply_mask(self, image: torch.Tensor, alpha: torch.Tensor):
+        if alpha.ndim == 3:
+            # [B, H, W] => [B, H, W, C=1]
+            alpha = alpha.unsqueeze(-1)
+        result = image * alpha + (1 - alpha) * 0.5
+        return (result,)
+
+
 class ICLight:
     """ICLightImpl"""
 
@@ -105,10 +129,12 @@ class ICLight:
 
 NODE_CLASS_MAPPINGS = {
     "ICLightAppply": ICLight,
+    "ICLightApplyMaskGrey": ICLightApplyMaskGrey,
     "VAEEncodeArgMax": VAEEncodeArgMax,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "ICLightApply": "IC Light Apply",
+    "ICLightApplyMaskGrey": "IC Light Apply Mask Grey",
     "VAEEncodeArgMax": "VAE Encode ArgMax",
 }
