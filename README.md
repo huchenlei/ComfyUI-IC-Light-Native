@@ -7,7 +7,7 @@ Download the repository and unpack into the custom_nodes folder in the ComfyUI i
 Or clone via GIT, starting from ComfyUI installation directory:
 ```bash
 cd custom_nodes
-git clone git@github.com:huchenlei/ComfyUI-IC-Light.git
+git clone git@github.com:huchenlei/ComfyUI-IC-Light-Native.git
 ```
 
 ### Download models
