@@ -36,6 +36,8 @@ darkened background in FBC workflows. You can use `IC Light Apply Mask Grey` to 
 
 ### [Given FG, Generate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/6b801a2d-f37c-44f4-b52d-ad7de1748f8e)
+If you want to keep the original color of the fg object, you can put the fg object in the latent space to further guide the generation. [workflow](https://github.com/huchenlei/ComfyUI-IC-Light-Native/blob/main/examples/ic_light_preserve_color.json)
+![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/6fb8c01e-727c-4fa7-b72f-f91ea3dce004)
 
 ### [Given FG and light map, Genereate BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_lightmap.json)
 Light from right
