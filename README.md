@@ -27,6 +27,7 @@ You MUST install following nodes first for IC light to work properly.
 - [ComfyUI-KJNodes](https://github.com/kijai/ComfyUI-KJNodes): Provides various mask nodes to create light map.
 - [ComfyUI-Easy-Use](https://github.com/yolain/ComfyUI-Easy-Use): A giant node pack of everything. The remove bg node used in workflow comes from this pack.
 - [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials): Many useful tooling nodes. Image resize node used in the workflow comes from this pack.
+- [ComfyUI-IC-Light](https://github.com/kijai/ComfyUI-IC-Light): The IC-Light impl from kijai. It includes a very useful `DetailTransfer` node to help preverse high frequency details from input fg image.
 
 ## Workflows
 Please make sure the fg image's masked/transparent area are grey before you pass it to the VAE. Otherwise, you will get background obscured in FC workflows or
@@ -48,6 +49,15 @@ Light from left
 
 ### [Given FG and BG, Put FG on BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_bg_combine.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/ea87538a-15d8-43d8-874d-bcddab9f4f0e)
+
+### Recover high frequency detail (Text, etc) from original input image
+![06 06 2024_12 19 35_REC](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/7fbd66e9-5468-4644-9edb-abbc5aa55b77)
+- Input image:
+  ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/ebdd9f49-41ee-47e3-a334-299fd1ee0385)
+- Raw generation:
+  ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/040a59ff-1aaf-4df9-bb00-1e50ae67db1e)
+- After detail transfer:
+  ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/86ddfc4d-7077-43ea-979f-8dcf243aaaf9)
 
 ## Common Issues
 IC-Light's unet is accepting extra inputs on top of the common noise input. FG model accepts extra 1 input (4 channels). BG model accepts 2 extra input (8 channels).
