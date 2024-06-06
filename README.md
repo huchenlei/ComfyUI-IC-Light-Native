@@ -50,7 +50,7 @@ Light from left
 ### [Given FG and BG, Put FG on BG and relight](https://github.com/huchenlei/ComfyUI-IC-Light/blob/main/examples/fg_bg_combine.json)
 ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/ea87538a-15d8-43d8-874d-bcddab9f4f0e)
 
-### Recover high frequency detail (Text, etc) from original input image
+### [Recover high frequency detail (Text, etc) from original input image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/blob/main/examples/ic_light_detail_transfer.json)
 ![06 06 2024_12 19 35_REC](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/7fbd66e9-5468-4644-9edb-abbc5aa55b77)
 - Input image:
   ![image](https://github.com/huchenlei/ComfyUI-IC-Light-Native/assets/20929282/ebdd9f49-41ee-47e3-a334-299fd1ee0385)
