@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-ic-light-native"
+description = "ComfyUI native implementation of [a/IC-Light](https://github.com/lllyasviel/IC-Light)."
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/huchenlei/ComfyUI-IC-Light-Native"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "huchenlei"
+DisplayName = "ComfyUI-IC-Light-Native"
+Icon = ""
