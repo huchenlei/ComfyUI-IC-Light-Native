@@ -9,6 +9,6 @@ Repository = "https://github.com/huchenlei/ComfyUI-IC-Light-Native"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "huchenlei"
 DisplayName = "ComfyUI-IC-Light-Native"
 Icon = ""
