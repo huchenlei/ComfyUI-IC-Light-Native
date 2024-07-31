@@ -2,7 +2,7 @@
 name = "comfyui-ic-light-native"
 description = "ComfyUI native implementation of [a/IC-Light](https://github.com/lllyasviel/IC-Light)."
 version = "1.0.0"
-license = "LICENSE"
+license = { file = "LICENSE" }
 
 [project.urls]
 Repository = "https://github.com/huchenlei/ComfyUI-IC-Light-Native"
