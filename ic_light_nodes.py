@@ -8,6 +8,10 @@ from comfy.ldm.models.autoencoder import AutoencoderKL
 from comfy.model_base import BaseModel
 from nodes import VAEEncode
 
+import importlib
+module_name = 'custom_nodes.ComfyUI-layerdiffuse'
+module = importlib.import_module(module_name)
+
 
 class UnetParams(TypedDict):
     input: torch.Tensor
