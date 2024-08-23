@@ -120,7 +120,14 @@ class ICLight:
         ic_model_state_dict = ic_model.model.diffusion_model.state_dict()
         work_model.add_patches(
             patches={
-                ("diffusion_model." + key): (value.to(dtype=dtype, device=device),)
+                ("diffusion_model." + key): (
+                    "diff",
+                    [
+                        value.to(dtype=dtype, device=device),
+                        # The extra flag to pad the weight if the diff's shape is larger than the weight
+                        {"pad_weight": key == "input_blocks.0.0.weight"},
+                    ],
+                )
                 for key, value in ic_model_state_dict.items()
             }
         )

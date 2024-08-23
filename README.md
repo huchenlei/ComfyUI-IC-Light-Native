@@ -19,12 +19,8 @@ There are 2 models:
 
 After you download these models, please put them under `ComfyUI/models/unet` and load them with `UNETLoader` node.
 
-### [Important!] Required nodes
-You MUST install following nodes first for IC light to work properly.
-- [ComfyUI-layerdiffuse](https://github.com/huchenlei/ComfyUI-layerdiffuse): Although not used in the workflow, the patching of weight load in layerdiffuse is a dependency for IC-Light nodes to work properly.
-  
 ### Recommended nodes
-- [ComfyUI-KJNodes](https://github.com/kijai/ComfyUI-KJNodes): Provides various mask nodes to create light map.
+ light map.
 - [ComfyUI-Easy-Use](https://github.com/yolain/ComfyUI-Easy-Use): A giant node pack of everything. The remove bg node used in workflow comes from this pack.
 - [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials): Many useful tooling nodes. Image resize node used in the workflow comes from this pack.
 - [ComfyUI-IC-Light](https://github.com/kijai/ComfyUI-IC-Light): The IC-Light impl from kijai. It includes a very useful `DetailTransfer` node to help preverse high frequency details from input fg image.
@@ -61,12 +57,7 @@ Light from left
 
 ## Common Issues
 IC-Light's unet is accepting extra inputs on top of the common noise input. FG model accepts extra 1 input (4 channels). BG model accepts 2 extra input (8 channels).
-The original unet's input is 4 channels as well. 
-
-If you see following issue, it means IC-Light's unet is not properly loaded, and you need to install [ComfyUI-layerdiffuse](https://github.com/huchenlei/ComfyUI-layerdiffuse) first.
-```
-RuntimeError: Given groups=1, weight of size [320, 4, 3, 3], expected input[2, 8, 64, 64] to have 4 channels, but got 8 channels instead
-```
+The original unet's input is 4 channels as well.
 
 If you see following error, it means you are using FG workflow but loaded the BG model.
 ```
