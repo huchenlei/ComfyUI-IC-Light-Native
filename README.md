@@ -20,7 +20,8 @@ There are 2 models:
 After you download these models, please put them under `ComfyUI/models/unet` and load them with `UNETLoader` node.
 
 ### Recommended nodes
- light map.
+
+- [ComfyUI-KJNodes](https://github.com/kijai/ComfyUI-KJNodes): Provides various mask nodes to create light map.
 - [ComfyUI-Easy-Use](https://github.com/yolain/ComfyUI-Easy-Use): A giant node pack of everything. The remove bg node used in workflow comes from this pack.
 - [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials): Many useful tooling nodes. Image resize node used in the workflow comes from this pack.
 - [ComfyUI-IC-Light](https://github.com/kijai/ComfyUI-IC-Light): The IC-Light impl from kijai. It includes a very useful `DetailTransfer` node to help preverse high frequency details from input fg image.
