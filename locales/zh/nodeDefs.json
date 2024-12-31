@@ -1,0 +1,38 @@
+{
+  "ICLightApplyMaskGrey": {
+    "display_name": "IC Light应用灰色遮罩",
+    "inputs": {
+      "alpha": {
+        "name": "阿尔法"
+      },
+      "image": {
+        "name": "图像"
+      }
+    }
+  },
+  "ICLightAppply": {
+    "display_name": "ICLight应用",
+    "inputs": {
+      "c_concat": {
+        "name": "c_concat"
+      },
+      "ic_model": {
+        "name": "ic模型"
+      },
+      "model": {
+        "name": "模型"
+      }
+    }
+  },
+  "VAEEncodeArgMax": {
+    "display_name": "VAE编码ArgMax",
+    "inputs": {
+      "pixels": {
+        "name": "像素"
+      },
+      "vae": {
+        "name": "vae"
+      }
+    }
+  }
+}
