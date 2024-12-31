@@ -1,0 +1,38 @@
+{
+  "ICLightApplyMaskGrey": {
+    "display_name": "IC Light Применить серую маску",
+    "inputs": {
+      "alpha": {
+        "name": "альфа"
+      },
+      "image": {
+        "name": "изображение"
+      }
+    }
+  },
+  "ICLightAppply": {
+    "display_name": "ICLightAppply",
+    "inputs": {
+      "c_concat": {
+        "name": "c_concat"
+      },
+      "ic_model": {
+        "name": "ic_модель"
+      },
+      "model": {
+        "name": "модель"
+      }
+    }
+  },
+  "VAEEncodeArgMax": {
+    "display_name": "VAE Encode ArgMax",
+    "inputs": {
+      "pixels": {
+        "name": "пиксели"
+      },
+      "vae": {
+        "name": "vae"
+      }
+    }
+  }
+}

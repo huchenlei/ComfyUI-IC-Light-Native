@@ -1,0 +1,38 @@
+{
+  "ICLightApplyMaskGrey": {
+    "display_name": "IC Light 마스크 그레이 적용",
+    "inputs": {
+      "alpha": {
+        "name": "알파"
+      },
+      "image": {
+        "name": "이미지"
+      }
+    }
+  },
+  "ICLightAppply": {
+    "display_name": "ICLightAppply",
+    "inputs": {
+      "c_concat": {
+        "name": "c_concat"
+      },
+      "ic_model": {
+        "name": "ic_model"
+      },
+      "model": {
+        "name": "모델"
+      }
+    }
+  },
+  "VAEEncodeArgMax": {
+    "display_name": "VAE 인코드 ArgMax",
+    "inputs": {
+      "pixels": {
+        "name": "픽셀"
+      },
+      "vae": {
+        "name": "vae"
+      }
+    }
+  }
+}

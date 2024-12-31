@@ -1,0 +1,38 @@
+{
+  "ICLightApplyMaskGrey": {
+    "display_name": "IC Lightマスクグレーの適用",
+    "inputs": {
+      "alpha": {
+        "name": "アルファ"
+      },
+      "image": {
+        "name": "画像"
+      }
+    }
+  },
+  "ICLightAppply": {
+    "display_name": "ICLight適用",
+    "inputs": {
+      "c_concat": {
+        "name": "c_連結"
+      },
+      "ic_model": {
+        "name": "ic_モデル"
+      },
+      "model": {
+        "name": "モデル"
+      }
+    }
+  },
+  "VAEEncodeArgMax": {
+    "display_name": "VAEエンコードArgMax",
+    "inputs": {
+      "pixels": {
+        "name": "ピクセル"
+      },
+      "vae": {
+        "name": "vae"
+      }
+    }
+  }
+}
